@@ -5,38 +5,48 @@ import java.util.Arrays;
 
 public class Main {
     void array() throws MyArraySizeException, MyArrayDataException {
-        String massiv = "1253785463254789";
-        for (int i = 0; i < massiv.length(); i++) {
-            if (massiv.charAt(i) < '1' || massiv.charAt(i) > '9')
-                throw new MyArrayDataException("symbol " + (i + 1) + " is not a number");
-        }
+        String[][] massiv = {{"1","1","1","1"},{"2","2","2","2"},{"3","3","3","3"},{"4","4","4","4"}};
         calculation(massiv);
     }
 
-    void calculation(String massiv) throws MyArraySizeException, MyArrayDataException {
+    void calculation(String massiv[][]) throws MyArraySizeException, MyArrayDataException {
         int len = 0;
+        int rows = massiv.length;
+        for (int m = 0; m < massiv.length; m++) {
+            if(massiv[m].length!=4 || rows!=4) throw new MyArraySizeException("Matrix not 4x4");
 
-        if (massiv.length() != 16) throw new MyArraySizeException("matrix is not 4 x 4");
 
-        int sum = 0;
-        Integer[][] convMassiv = new Integer[4][4];
+        }
+        int sum=0;
+        Integer [][] convMassiv = new Integer[massiv.length][massiv.length];
         for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                convMassiv[i][j] = Integer.parseInt(String.valueOf(massiv.charAt(len)));
-                len++;
-                System.out.print(convMassiv[i][j] + " ");
-                sum = convMassiv[i][j] + sum;
+            for (int j = 0; j < 4 ; j++) {
+                try {
+                    convMassiv[i][j] = Parsing(massiv[i][j]);
 
+                } catch (MyArrayDataException e) {
+                    System.out.println("Is not number: " +i+ " " +j );
+                    e.printStackTrace();
+                    convMassiv[i][j] = 0; //не рабоатет
+                }
+                System.out.printf(convMassiv[i][j]+ " ");
+                sum=convMassiv[i][j]+sum;
             }
             System.out.println();
+        }}
+    int Parsing(String convMassiv) throws MyArrayDataException{
+        try{
+            return Integer.parseInt(convMassiv);
         }
-        System.out.println("sum = " + sum);
-
+        catch(Exception ex)
+        {
+            throw new MyArrayDataException("DON'T TOUCH, IS WORKING");
+        }
     }
 
     public static void main(String[] args) throws MyArraySizeException, MyArrayDataException {
-
+        // write your code here
         Main ob = new Main();
         ob.array();
-    }
-}
+
+    }}
