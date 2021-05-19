@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Main {
     void array() throws MyArraySizeException, MyArrayDataException {
-        String[][] massiv = {{"1","1","1","1"},{"2","t","2","2"},{"3","3","3","3"},{"4","4","4","4"}};
+        String[][] massiv = {{"1","1","1","1"},{"2","2","2","2"},{"3","3","3","3"},{"4","4","4","4"}};
         calculation(massiv);
     }
 
