@@ -1,52 +1,38 @@
 package ru.slava.java.core;
 
-import java.io.IOException;
-import java.util.Arrays;
-
 public class Main {
-    void array() throws MyArraySizeException, MyArrayDataException {
-        String[][] massiv = {{"1","1","1","1"},{"2","t","2","2"},{"3","3","3","3"},{"4","4","4","4"}};
-        calculation(massiv);
-    }
 
-    void calculation(String massiv[][]) throws MyArraySizeException, MyArrayDataException {
-        int len = 0;
-        int rows = massiv.length;
-        for (int m = 0; m < massiv.length; m++) {
-            if(massiv[m].length!=4 || rows!=4) throw new MyArraySizeException("Matrix not 4x4");
+    public static void changeArray (String array[]){
 
-
-        }
-        int sum=0;
-        Integer [][] convMassiv = new Integer[massiv.length][massiv.length];
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4 ; j++) {
-                try {
-                    convMassiv[i][j] = Parsing(massiv[i][j]);
-
-                } catch (MyArrayDataException e) {
-                    System.out.println("Is not number: " +i+ " " +j );
-                    e.printStackTrace();
-                    convMassiv[i][j] = 0; //не рабоатет
-                }
-                System.out.printf(convMassiv[i][j]+ " ");
-                sum=convMassiv[i][j]+sum;
+        String temp;
+        for (int i = 0; i < array.length -1; i+=2) {
+            temp = array[i];
+            array[i] = array[i+1];
+            array[i+1] = temp;
             }
-            System.out.println();
-        }}
-int Parsing(String convMassiv) throws MyArrayDataException{
-        try{
-            return Integer.parseInt(convMassiv);
-        }
-        catch(Exception ex)
-    {
-        throw new MyArrayDataException("DON'T TOUCH, IS WORKING");
     }
+
+    public static void main(String[] args) {
+
+        String [] array = new String[]{"a ","b ","c ","d ","e ","f "};
+
+        changeArray(array);
+
+        for (int i = 0; i < array.length; i++) {
+            System.out.printf(array[i]);
+        }
+        System.out.println();
+
+
+        Apple apple = new Apple();
+        Orange orange = new Orange();
+
+        Box<Apple> box1 = new Box<Apple>(apple, apple, apple, apple,apple,apple);
+        Box<Orange> box2 = new Box<Orange>(orange, orange,orange, orange);
+
+        box1.compare(box2);
+
+        Box<Orange> box3 = new Box<Orange>();
+        box2.transfer(box3);
+        }
 }
-
-    public static void main(String[] args) throws MyArraySizeException, MyArrayDataException {
-            // write your code here
-            Main ob = new Main();
-            ob.array();
-
-}}
