@@ -27,7 +27,7 @@ public class Main {
                 } catch (MyArrayDataException e) {
                     System.out.println("Is not number: " +i+ " " +j );
                     e.printStackTrace();
-                    convMassiv[i][j] = 0; //не рабоатет
+                    convMassiv[i][j] = 0; //не рабоатетdgrtyrdtetethjj
                 }
                 System.out.printf(convMassiv[i][j]+ " ");
                 sum=convMassiv[i][j]+sum;
